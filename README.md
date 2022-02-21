@@ -1,6 +1,6 @@
 # hacker-news-ui
-
-Разработка интерфейса из двух страниц для сайта [Hacker News](https://news.ycombinator.com/news).
+https://hacker-news-ui-iota.vercel.app/
+Интерфейс из двух страниц для сайта [Hacker News](https://news.ycombinator.com/news).
 
 ## Продуктовые требования
 ### Главная страница
