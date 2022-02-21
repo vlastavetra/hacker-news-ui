@@ -13,7 +13,7 @@ export const loadNews = () => async (dispatch, _getState, api) => {
   const allNewsResponse = await api.get(`${PATH.all}${prettify}`);
   const idList = allNewsResponse.data.slice(0, newsСount);
   const newsResponse = await Promise.all(idList.map((id) => api.get(`${PATH.article}${id}${prettify}`)));
-  const newsArray = newsResponse.map((item, index) => item.data);
+  const newsArray = newsResponse.map((item) => item.data);
 
   dispatch(ActionCreator.loadNews(newsArray));
 };

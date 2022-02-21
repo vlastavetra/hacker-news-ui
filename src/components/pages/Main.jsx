@@ -5,10 +5,24 @@ import {loadNews} from '../../store/api-actions';
 import Cardboard from '../modules/Cardboard';
 import styles from './Main.module.scss';
 
+const sortByDate = (a, b) => {
+  if (a.time > b.time) {
+    return 1;
+  }
+  if (a.time < b.time) {
+    return -1;
+  }
+  return 0;
+};
+
 function Main({news, loadData, isDataLoaded}) {
+  const cards = news.filter((item) => item !== null).sort(sortByDate);
 
   useEffect(() => {
-    loadData();
+    const interval = setInterval(() => {
+      loadData();
+    }, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -17,7 +31,7 @@ function Main({news, loadData, isDataLoaded}) {
         <h1 className={styles.title}>Hacker news</h1>
       </header>
       <main className={styles.main}>
-        {isDataLoaded && <Cardboard cards={news}/>}
+        {isDataLoaded && <Cardboard cards={cards}/>}
       </main>
       <footer className={styles.footer}></footer>
     </div>

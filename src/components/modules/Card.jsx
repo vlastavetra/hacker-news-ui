@@ -1,21 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import Icon from '../elements/Icon';
 import styles from './Card.module.scss';
 
-function Card({id, title}) {
+function Card({id, title, score, by, time}) {
+  const date = new Date(time * 1000);
+
   return (
     <Link className={styles.root} to={`/${id}`}>
       <article className={styles.article}>
-        <h3>{title}</h3>
+        <div className={styles.author}>
+          <Icon className={styles.userIcon} type='user'/>
+          <span className={styles.username}>{by}</span>
+        </div>
+        <h2 className={styles.title}>{title}</h2>
+        <time className={styles.date} dateTime={date}>
+          {date.toLocaleString()}
+        </time>
+        <div className={styles.rating}>
+          <Icon className={styles.starIcon} type='star'/>
+          <span className={styles.score}>{score}</span>
+        </div>
       </article>
     </Link>
   );
 }
 
 Card.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
+  by: PropTypes.string.isRequired,
 };
 
 export default Card;

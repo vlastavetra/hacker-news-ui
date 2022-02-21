@@ -7,7 +7,7 @@ function Cardboard({cards}) {
   return (
     <section className={styles.root}>
       {cards.map((card) => (
-        <Card key={card.id} {...card}/>
+        card && <Card key={card.id} {...card}/>
       ))}
     </section>
   );
