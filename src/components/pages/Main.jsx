@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loadNews} from '../../store/api-actions';
+import Cardboard from '../modules/Cardboard';
 import styles from './Main.module.scss';
 
-function Main(props) {
-  const {news, loadData, isDataLoaded} = props;
+function Main({news, loadData, isDataLoaded}) {
 
   useEffect(() => {
     loadData();
@@ -15,18 +14,10 @@ function Main(props) {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <h1>Hacker news</h1>
+        <h1 className={styles.title}>Hacker news</h1>
       </header>
       <main className={styles.main}>
-        <h2>Last news</h2>
-        {isDataLoaded &&
-          news.map((article) => (
-            <article key={article.id}>
-              <Link className={styles.link} to={`/${article.id}`}>
-                <h3>{article.title}</h3>
-              </Link>
-            </article>
-          ))}
+        {isDataLoaded && <Cardboard cards={news}/>}
       </main>
       <footer className={styles.footer}></footer>
     </div>
