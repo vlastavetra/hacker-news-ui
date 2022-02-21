@@ -1,0 +1,89 @@
+@import '../styles/variables.scss';
+
+@font-face {
+	font-family: 'Lato';
+	src: url("../../public/fonts/Lato-Light.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Lato';
+	src: url("../../public/fonts/Lato-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: medium;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Lato';
+	src: url("../../public/fonts/Lato-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: bold;
+	font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: $color_black;
+  background: $color_white;
+  font-family: 'Lato', Helvetica, sans-serif;
+  min-width: 320px;
+}
+
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, blockquote, hr {
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+}
+
+button {
+	background-color: transparent;
+	border-radius: 0;
+	border: 0;
+	box-shadow: none;
+	outline: 0;
+	padding: 0;
+	display: block;
+	cursor: inherit;
+	touch-action: manipulation;
+	appearance: none;
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+figure {
+	margin: 0;
+}
+
+input, textarea {
+	display: block;
+	outline: 0;
+	box-shadow: none;
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+}
