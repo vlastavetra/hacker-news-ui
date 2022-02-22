@@ -19,12 +19,6 @@ const reducer = (state = initialState, action) => {
         article: action.payload.data,
         isDataLoaded: true,
       };
-    case ActionType.CLEAR_ARTICLE:
-      return {
-        ...state,
-        article: {},
-        isDataLoaded: true,
-      };
     case ActionType.CREATE_ARTICLE:
       return {
         ...state,

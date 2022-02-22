@@ -8,8 +8,6 @@ const PATH = {
 };
 
 export const loadNews = () => async (dispatch, _getState, api) => {
-  dispatch(ActionCreator.clearArticle());
-
   const allNewsResponse = await api.get(`${PATH.all}${prettify}`);
   const idList = allNewsResponse.data.slice(0, newsСount);
   const newsResponse = await Promise.all(idList.map((id) => api.get(`${PATH.article}${id}${prettify}`)));
