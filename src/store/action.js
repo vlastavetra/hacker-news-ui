@@ -2,6 +2,7 @@ export const ActionType = {
   LOAD_NEWS: 'data/news',
   LOAD_ARTICLE: 'data/loadArticle',
   CREATE_ARTICLE: 'data/createArticle',
+  RESET: 'data/reset',
 };
 
 export const ActionCreator = {
@@ -16,5 +17,9 @@ export const ActionCreator = {
   createArticle: (article) => ({
     type: ActionType.CREATE_ARTICLE,
     payload: article,
+  }),
+  resetData: () => ({
+    type: ActionType.RESET,
+    payload: false,
   }),
 };

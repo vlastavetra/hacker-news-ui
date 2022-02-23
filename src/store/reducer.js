@@ -3,6 +3,7 @@ import {ActionType} from './action';
 const initialState = {
   news: [],
   article: {},
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +17,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_ARTICLE:
       return {
         ...state,
-        article: action.payload.data,
+        article: action.payload,
         isDataLoaded: true,
       };
     case ActionType.CREATE_ARTICLE:
@@ -24,6 +25,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         article: action.payload,
         isDataLoaded: true,
+      };
+    case ActionType.RESET:
+      return {
+        ...state,
+        isDataLoaded: false,
       };
     default:
       return state;

@@ -29,7 +29,7 @@ function Card({id, title, score, by, time}) {
 
 Card.propTypes = {
   id: PropTypes.number,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   score: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired,
   by: PropTypes.string.isRequired,

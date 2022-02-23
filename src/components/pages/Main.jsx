@@ -39,7 +39,7 @@ function Main({news, loadData, isDataLoaded}) {
         </button>
       </header>
       <main className={styles.main}>
-        {isDataLoaded ? <Cardboard cards={cards}/> : <p>Loading articles</p>}
+        {isDataLoaded ? <Cardboard cards={cards}/> : <p className={styles.loader}>Loading articles ...</p>}
       </main>
       <footer className={styles.footer}></footer>
     </div>

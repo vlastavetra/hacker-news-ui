@@ -18,5 +18,5 @@ export const loadNews = () => async (dispatch, _getState, api) => {
 
 export const loadArticle = (id) => (dispatch, _getState, api) => {
   api.get(`${PATH.article}${id}${prettify}`)
-    .then((article) => dispatch(ActionCreator.loadArticle(article)));
+    .then(({data}) => dispatch(ActionCreator.loadArticle(data)));
 };
