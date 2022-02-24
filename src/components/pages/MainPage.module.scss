@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.root {
+  margin: 0 50px;
+
+  @media (min-width: $BP3-min) {
+    margin: 0 100px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.title {
+  @include typo_h1;
+  padding: 40px 0;
+}
+
+.button{
+  @include typo_button;
+  cursor: pointer;
+  padding: 10px 30px;
+  border-radius: 100px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.loader {
+  @include typo_textM;
+}

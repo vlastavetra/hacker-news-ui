@@ -4,19 +4,30 @@ const newsСount = 100;
 const prettify = '.json?print=pretty';
 const PATH = {
   all: '/newstories',
-  article: '/item/',
+  item: '/item/',
+};
+
+export const loadArticles = (ids) => async (dispatch, _getState, api) => {
+  const data = await Promise.all(ids.map((id) => api.get(`${PATH.item}${id}${prettify}`)));
+
+  dispatch(ActionCreator.loadNews(data.map((item) => item.data)));
 };
 
 export const loadNews = () => async (dispatch, _getState, api) => {
-  const allNewsResponse = await api.get(`${PATH.all}${prettify}`);
-  const idList = allNewsResponse.data.slice(0, newsСount);
-  const newsResponse = await Promise.all(idList.map((id) => api.get(`${PATH.article}${id}${prettify}`)));
-  const newsArray = newsResponse.map((item) => item.data);
+  dispatch(ActionCreator.resetData());
 
-  dispatch(ActionCreator.loadNews(newsArray));
+  return api.get(`${PATH.all}${prettify}`)
+    .then(({data}) => dispatch(loadArticles(data.slice(0, newsСount))));
 };
 
 export const loadArticle = (id) => (dispatch, _getState, api) => {
-  api.get(`${PATH.article}${id}${prettify}`)
+  api.get(`${PATH.item}${id}${prettify}`)
     .then(({data}) => dispatch(ActionCreator.loadArticle(data)));
+};
+
+export const loadCommentsTree = () => async (dispatch, _getState, api) => {
+  const ids = _getState().article.kids;
+  const data = await Promise.all(ids.map((id) => api.get(`${PATH.item}${id}${prettify}`)));
+
+  dispatch(ActionCreator.loadCommentsTree(data.map((item) => item.data)));
 };

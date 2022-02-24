@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Main from '../pages/Main';
-import Article from '../pages/Article';
-import Error from '../pages/Error';
+import MainPage from '../pages/MainPage';
+import ArticlePage from '../pages/ArticlePage';
+import ErrorPage from '../pages/ErrorPage';
 import '../../styles/global.scss';
 
 function App() {
@@ -10,11 +10,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Main/>
+          <MainPage/>
         </Route>
-        <Route path="/:id" exact component={Article} />
+        <Route path="/:id" exact component={ArticlePage} />
         <Route>
-          <Error/>
+          <ErrorPage/>
         </Route>
       </Switch>
     </BrowserRouter>

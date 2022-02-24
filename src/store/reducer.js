@@ -3,6 +3,9 @@ import {ActionType} from './action';
 const initialState = {
   news: [],
   article: {},
+  commentsTree: [],
+  isCommentsTreeLoad: false,
+  isArticleLoaded: false,
   isDataLoaded: false,
 };
 
@@ -18,13 +21,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         article: action.payload,
-        isDataLoaded: true,
+        isArticleLoaded: true,
       };
     case ActionType.CREATE_ARTICLE:
       return {
         ...state,
         article: action.payload,
-        isDataLoaded: true,
+        isArticleLoaded: true,
+      };
+    case ActionType.LOAD_COMMENTS_TREE:
+      return {
+        ...state,
+        commentsTree: action.payload,
+        isCommentsTreeLoad: true,
       };
     case ActionType.RESET:
       return {

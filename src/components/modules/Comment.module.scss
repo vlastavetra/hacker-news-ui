@@ -1,0 +1,61 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.root {
+  @include typo_copy;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 20px 0;
+
+  border-bottom: 1px solid $color_black;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  @include typo_textM;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.title {
+  @include typo_h2;
+  display: inline-block;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.date {
+  @include typo_textS;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.starIcon, .userIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.score {
+  @include typo_textS;
+  margin-top: 5px;
+  margin-left: 7px;
+}

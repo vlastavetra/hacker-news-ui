@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Error.module.scss';
+import styles from './ErrorPage.module.scss';
 
-function Error() {
+function ErrorPage() {
   return (
     <div className={styles.root}>
       <header className={styles.header}></header>
@@ -11,4 +11,4 @@ function Error() {
   );
 }
 
-export default Error;
+export default ErrorPage;

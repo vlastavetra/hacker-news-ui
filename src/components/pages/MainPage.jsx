@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {loadNews} from '../../store/api-actions';
 import Cardboard from '../modules/Cardboard';
-import styles from './Main.module.scss';
+import styles from './MainPage.module.scss';
 
 const sortByDate = (a, b) => {
   if (a.time < b.time) {
@@ -16,7 +17,7 @@ const sortByDate = (a, b) => {
   return 0;
 };
 
-function Main({news, loadData, isDataLoaded}) {
+function MainPage({news, loadData, isDataLoaded}) {
   const cards = news.filter((item) => item !== null).sort(sortByDate);
 
   useEffect(() => {
@@ -31,7 +32,9 @@ function Main({news, loadData, isDataLoaded}) {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Hacker news</h1>
+        <Link to={'/'}>
+          <h1 className={styles.title}>Hacker news</h1>
+        </Link>
         <button
           className={styles.button}
           onClick={() => loadData()}
@@ -46,7 +49,7 @@ function Main({news, loadData, isDataLoaded}) {
   );
 }
 
-Main.propTypes = {
+MainPage.propTypes = {
   news: PropTypes.array,
   loadData: PropTypes.func,
   isDataLoaded: PropTypes.bool,
@@ -63,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

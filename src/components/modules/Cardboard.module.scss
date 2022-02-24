@@ -2,8 +2,13 @@
 
 .root {
   display: grid;
-  grid-template-columns: repeat(2, calc(98% / 2));
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
-  gap: 20px 2%;
+  row-gap: 20px;
   padding: 30px 0;
+
+  @media (min-width: $BP3-min) {
+    grid-template-columns: repeat(2, calc(98% / 2));
+    gap: 20px 2%;
+  }
 }
