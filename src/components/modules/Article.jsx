@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Icon from '../elements/Icon';
 import styles from './Article.module.scss';
 
-function Article({title, by, time, url}) {
+function Article(props) {
+  const {title, by, time, url} = props;
   const date = new Date(time * 1000);
 
   return (
     <article className={styles.root}>
-      <h2>{title}</h2>
+      <h1 className={styles.title}>{title}</h1>
       <div className={styles.author}>
         <Icon className={styles.userIcon} type='user'/>
         <span className={styles.username}>{by}</span>
@@ -16,14 +17,14 @@ function Article({title, by, time, url}) {
       <time className={styles.date} dateTime={date}>
         {date.toLocaleString()}
       </time>
-      <a
-        href={url}
-        className={styles.link}
-        rel='noopener noreferrer'
-        target='_blank'
-      >
-        Source
-      </a>
+      {url &&
+        <a
+          href={url}
+          className={styles.link}
+          rel='noopener noreferrer'
+          target='_blank'
+        >Source
+        </a>}
     </article>
   );
 }

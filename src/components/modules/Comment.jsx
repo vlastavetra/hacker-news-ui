@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Icon from '../elements/Icon';
 import styles from './Comment.module.scss';
 
-function Comment({text, by, time}) {
+function Comment(props) {
+  const {text, by, time, kids} = props;
   const date = new Date(time * 1000);
 
   return (
@@ -16,6 +17,7 @@ function Comment({text, by, time}) {
         {date.toLocaleString()}
       </time>
       <div dangerouslySetInnerHTML={{__html: text}}/>
+      {kids && <button className={styles.button}><Icon className={styles.userIcon} type='comment'/></button>}
     </li>
   );
 }
@@ -24,6 +26,7 @@ Comment.propTypes = {
   text: PropTypes.string,
   time: PropTypes.number.isRequired,
   by: PropTypes.string,
+  kids: PropTypes.array,
 };
 
 export default Comment;

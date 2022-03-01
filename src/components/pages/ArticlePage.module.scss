@@ -15,7 +15,13 @@
   align-items: baseline;
   }
 
-.title {
-  @include typo_h1;
+.backButton {
+  cursor: pointer;
   padding: 40px 0;
+  transition: transform .3s ease;
+
+  &:hover {
+    transform: scale(110%);
+    transition: transform .3s ease;
+  }
 }

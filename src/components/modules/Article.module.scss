@@ -2,11 +2,15 @@
 @import '../../styles/mixin.scss';
 
 .root {
-  @include typo_h3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
+}
+
+.title {
+  @include typo_h1;
+  margin-bottom: 30px;
 }
 
 .article {
@@ -26,13 +30,6 @@
   @include typo_textM;
   margin-top: 8px;
   margin-left: 8px;
-}
-
-.title {
-  @include typo_h2;
-  display: inline-block;
-  margin-bottom: 20px;
-  flex-grow: 1;
 }
 
 .date {

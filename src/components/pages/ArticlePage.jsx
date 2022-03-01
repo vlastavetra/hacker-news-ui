@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import Icon from '../elements/Icon';
 import {loadArticle, loadCommentsTree} from '../../store/api-actions';
 import {ActionCreator} from '../../store/action';
 import Article from '../modules/Article';
@@ -13,6 +14,11 @@ function ArticlePage(props) {
   const path = location.pathname;
   const id = Number(path.replace(/\//,''));
   const loadedArticle = news.find((item) => item.id === id);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/');
+  };
 
   useEffect(() => {
     if (loadedArticle) {
@@ -27,9 +33,9 @@ function ArticlePage(props) {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <Link to={'/'}>
-          <h1 className={styles.title}>Hacker news</h1>
-        </Link>
+        <button className={styles.backButton} onClick={() => handleClick()}>
+          <Icon className={styles.backIcon} type='arrow'/>
+        </button>
       </header>
       <main className={styles.main}>
         {isArticleLoaded ?
