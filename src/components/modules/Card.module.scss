@@ -50,8 +50,17 @@
   height: 20px;
 }
 
+.counters {
+  display: flex;
+  align-items: center;
+}
+
 .score {
   @include typo_textS;
   margin-top: 5px;
+  margin-left: 7px;
+}
+
+.comments {
   margin-left: 7px;
 }

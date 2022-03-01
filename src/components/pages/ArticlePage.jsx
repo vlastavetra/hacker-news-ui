@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import Icon from '../elements/Icon';
-import {loadArticle, loadCommentsTree} from '../../store/api-actions';
+import {loadArticle, loadComments} from '../../store/api-actions';
 import {ActionCreator} from '../../store/action';
 import Article from '../modules/Article';
 import Comments from '../modules/Comments';
 import styles from './ArticlePage.module.scss';
 
 function ArticlePage(props) {
-  const {article, loadData, isArticleLoaded, createData, location, news, getCommentsTree, commentsTree} = props;
+  const {article, loadData, isArticleLoaded, createData, location, news, getComments, comments} = props;
   const path = location.pathname;
   const id = Number(path.replace(/\//,''));
   const loadedArticle = news.find((item) => item.id === id);
@@ -27,7 +27,7 @@ function ArticlePage(props) {
   }, []);
 
   useEffect(() => {
-    isArticleLoaded && article.kids && getCommentsTree();
+    isArticleLoaded && article.kids && getComments();
   }, [isArticleLoaded]);
 
   return (
@@ -41,7 +41,7 @@ function ArticlePage(props) {
         {isArticleLoaded ?
           <Article {...article}/> :
           <p className={styles.loader}>Loading article ...</p>}
-        {article.kids && <Comments comments={commentsTree} articleId={id}/>}
+        {article.kids && <Comments comments={comments} articleId={id}/>}
       </main>
       <footer className={styles.footer}></footer>
     </div>
@@ -51,18 +51,18 @@ function ArticlePage(props) {
 ArticlePage.propTypes = {
   news: PropTypes.array,
   article: PropTypes.object,
-  commentsTree: PropTypes.array,
+  comments: PropTypes.array,
   loadData: PropTypes.func,
-  getCommentsTree: PropTypes.func,
+  getComments: PropTypes.func,
   isArticleLoaded: PropTypes.bool,
   createData:  PropTypes.func,
   location: PropTypes.object,
 };
 
-const mapStateToProps = ({news, article, commentsTree, isArticleLoaded}) => ({
+const mapStateToProps = ({news, article, comments, isArticleLoaded}) => ({
   news,
   article,
-  commentsTree,
+  comments,
   isArticleLoaded,
 });
 
@@ -73,8 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
   loadData(id) {
     dispatch(loadArticle(id));
   },
-  getCommentsTree() {
-    dispatch(loadCommentsTree());
+  getComments() {
+    dispatch(loadComments());
   },
 });
 

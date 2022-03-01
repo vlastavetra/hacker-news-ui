@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Icon from '../elements/Icon';
 import styles from './Card.module.scss';
 
-function Card({id, title, score, by, time}) {
+function Card({id, title, score, by, time, descendants}) {
   const date = new Date(time * 1000);
 
   return (
@@ -18,9 +18,16 @@ function Card({id, title, score, by, time}) {
         <time className={styles.date} dateTime={date}>
           {date.toLocaleString()}
         </time>
-        <div className={styles.rating}>
-          <Icon className={styles.starIcon} type='star'/>
-          <span className={styles.score}>{score}</span>
+        <div className={styles.counters}>
+          <div className={styles.rating}>
+            <Icon className={styles.starIcon} type='star'/>
+            <span className={styles.score}>{score}</span>
+          </div>
+          {descendants ?
+            <div className={styles.comments}>
+              <Icon className={styles.starIcon} type='comment'/>
+              <span className={styles.score}>{descendants}</span>
+            </div> : null}
         </div>
       </article>
     </Link>
@@ -33,6 +40,7 @@ Card.propTypes = {
   score: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired,
   by: PropTypes.string.isRequired,
+  descendants: PropTypes.number,
 };
 
 export default Card;

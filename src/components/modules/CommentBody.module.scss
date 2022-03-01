@@ -9,10 +9,47 @@
   align-items: baseline;
   height: 100%;
   padding: 20px 0;
+}
 
-  &:not(:last-child) {
-    border-bottom: 1px solid $color_black;
-  }
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  @include typo_textM;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.title {
+  @include typo_h2;
+  display: inline-block;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.date {
+  @include typo_textS;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.score {
+  @include typo_textS;
+  margin-top: 5px;
+  margin-left: 7px;
 }
 
 .button {
@@ -21,7 +58,6 @@
   cursor: pointer;
   margin-top: 15px;
   transition: transform .3s ease;
-
 
   & svg {
     width: 30px;
@@ -33,10 +69,4 @@
     transform: scale(120%);
     transition: transform .3s ease;
   }
-}
-
-.subComments {
-  list-style: none;
-  padding-left: 20px;
-  border-left: 1px solid $color_black;
 }

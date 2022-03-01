@@ -34,14 +34,22 @@
 }
 
 @mixin typo_textM {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.2;
   font-weight: 300;
   letter-spacing: 1px;
 }
 
-@mixin typo_button {
+@mixin typo_textL {
   font-size: 18px;
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+
+@mixin typo_button {
+  font-size: 14px;
   line-height: 1.2;
   font-weight: 400;
   letter-spacing: 1px;

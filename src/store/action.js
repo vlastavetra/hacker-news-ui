@@ -2,8 +2,10 @@ export const ActionType = {
   LOAD_NEWS: 'data/news',
   LOAD_ARTICLE: 'data/loadArticle',
   CREATE_ARTICLE: 'data/createArticle',
-  LOAD_COMMENTS_TREE: 'data/loadCommentsTree',
-  RESET: 'data/reset',
+  LOAD_COMMENTS: 'data/loadComments',
+  LOAD_SUB_COMMENTS: 'data/loadSubComments',
+  RESET_NEWS: 'data/resetNews',
+  RESET_ARTICLE: 'data/resetArticle',
 };
 
 export const ActionCreator = {
@@ -19,12 +21,20 @@ export const ActionCreator = {
     type: ActionType.CREATE_ARTICLE,
     payload: article,
   }),
-  loadCommentsTree: (article) => ({
-    type: ActionType.LOAD_COMMENTS_TREE,
-    payload: article,
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments,
   }),
-  resetData: () => ({
-    type: ActionType.RESET,
+  loadSubComments: (comments) => ({
+    type: ActionType.LOAD_SUB_COMMENTS,
+    payload: comments,
+  }),
+  resetNews: () => ({
+    type: ActionType.RESET_NEWS,
+    payload: false,
+  }),
+  resetArticle: () => ({
+    type: ActionType.RESET_ARTICLE,
     payload: false,
   }),
 };

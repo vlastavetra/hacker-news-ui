@@ -3,10 +3,12 @@ import {ActionType} from './action';
 const initialState = {
   news: [],
   article: {},
-  commentsTree: [],
-  isCommentsTreeLoad: false,
+  comments: [],
+  subComments: [],
+  isNewsLoaded: false,
   isArticleLoaded: false,
-  isDataLoaded: false,
+  isCommentsLoad: false,
+  isSubCommentsLoad: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +17,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         news: action.payload,
-        isDataLoaded: true,
+        isNewsLoaded: true,
       };
     case ActionType.LOAD_ARTICLE:
       return {
@@ -29,16 +31,32 @@ const reducer = (state = initialState, action) => {
         article: action.payload,
         isArticleLoaded: true,
       };
-    case ActionType.LOAD_COMMENTS_TREE:
+    case ActionType.LOAD_COMMENTS:
       return {
         ...state,
-        commentsTree: action.payload,
-        isCommentsTreeLoad: true,
+        comments: action.payload,
+        isCommentsLoad: true,
       };
-    case ActionType.RESET:
+    case ActionType.LOAD_SUB_COMMENTS:
       return {
         ...state,
-        isDataLoaded: false,
+        subComments: action.payload,
+        isSubCommentsLoad: true,
+      };
+    case ActionType.RESET_ARTICLE:
+      return {
+        ...state,
+        isArticleLoaded: false,
+        isCommentsLoad: false,
+        isSubCommentsLoad: false,
+        article: {},
+        comments: [],
+        subComments: [],
+      };
+    case ActionType.RESET_NEWS:
+      return {
+        ...state,
+        isNewsLoaded: false,
       };
     default:
       return state;

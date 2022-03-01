@@ -1,16 +1,18 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {loadArticle, loadCommentsTree} from '../../store/api-actions';
+import {loadArticle, loadComments} from '../../store/api-actions';
 import Comment from './Comment';
+import Button from './Button';
+import Loader from './Loader';
 import styles from './Comments.module.scss';
 
 function Comments(props) {
-  const {comments, articleId, loadData, getCommentsTree, isCommentsTreeLoad} = props;
+  const {comments, articleId, loadData, getComments, isCommentsLoad} = props;
 
   const updateComments = () => {
     loadData(articleId);
-    getCommentsTree();
+    getComments();
   };
 
   useEffect(() => {
@@ -24,13 +26,14 @@ function Comments(props) {
     <section className={styles.root}>
       <div className={styles.title}>
         <span>Comments</span>
-        <button
-          className={styles.button}
-          onClick={() => (updateComments())}
-        >Update
-        </button>
+        <Button
+          text='Update'
+          handleClick={() => updateComments()}
+        />
       </div>
-      {isCommentsTreeLoad && <ul>{comments.map((comment) => (<Comment key={comment?.id} {...comment}/>))}</ul>}
+      {isCommentsLoad ?
+        <ul>{comments.map((comment) => (comment.text && <Comment key={comment?.id} {...comment}/>))}</ul> :
+        <Loader text='comments'/>}
     </section>
   );
 }
@@ -39,22 +42,22 @@ Comments.propTypes = {
   comments: PropTypes.array.isRequired,
   articleId: PropTypes.number,
   loadData: PropTypes.func,
-  getCommentsTree: PropTypes.func,
-  isCommentsTreeLoad: PropTypes.bool,
+  getComments: PropTypes.func,
+  isCommentsLoad: PropTypes.bool,
 };
 
-const mapStateToProps = ({article, commentsTree, isCommentsTreeLoad}) => ({
+const mapStateToProps = ({article, comments, isCommentsLoad}) => ({
   article,
-  commentsTree,
-  isCommentsTreeLoad,
+  comments,
+  isCommentsLoad,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadData(id) {
     dispatch(loadArticle(id));
   },
-  getCommentsTree() {
-    dispatch(loadCommentsTree());
+  getComments() {
+    dispatch(loadComments());
   },
 });
 

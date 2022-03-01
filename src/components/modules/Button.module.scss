@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.root{
+  @include typo_button;
+  cursor: pointer;
+  padding: 10px 30px;
+  border-radius: 100px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}

@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
-import { isEmpty } from 'lodash';
+import {isEmpty} from 'lodash';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {loadNews} from '../../store/api-actions';
+import {ActionCreator} from '../../store/action';
 import Cardboard from '../modules/Cardboard';
+import Loader from '../modules/Loader';
+import Button from '../modules/Button';
 import styles from './MainPage.module.scss';
 
 const sortByDate = (a, b) => {
@@ -17,11 +19,12 @@ const sortByDate = (a, b) => {
   return 0;
 };
 
-function MainPage({news, loadData, isDataLoaded}) {
+function MainPage({news, article, loadData, isNewsLoaded, resetArticle}) {
   const cards = news.filter((item) => item !== null).sort(sortByDate);
 
   useEffect(() => {
     isEmpty(news) && loadData();
+    isEmpty(!article) && resetArticle();
 
     const interval = setInterval(() => {
       loadData();
@@ -32,17 +35,14 @@ function MainPage({news, loadData, isDataLoaded}) {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        <Link to={'/'}>
-          <h1 className={styles.title}>Hacker news</h1>
-        </Link>
-        <button
-          className={styles.button}
-          onClick={() => loadData()}
-        >Update
-        </button>
+        <h1 className={styles.title}>Hacker news</h1>
+        <Button
+          text='Update'
+          handleClick={() => loadData()}
+        />
       </header>
       <main className={styles.main}>
-        {isDataLoaded ? <Cardboard cards={cards}/> : <p className={styles.loader}>Loading articles ...</p>}
+        {isNewsLoaded ? <Cardboard cards={cards}/> : <Loader text='articles'/>}
       </main>
       <footer className={styles.footer}></footer>
     </div>
@@ -52,17 +52,22 @@ function MainPage({news, loadData, isDataLoaded}) {
 MainPage.propTypes = {
   news: PropTypes.array,
   loadData: PropTypes.func,
-  isDataLoaded: PropTypes.bool,
+  isNewsLoaded: PropTypes.bool,
+  article: PropTypes.object,
+  resetArticle: PropTypes.func,
 };
 
-const mapStateToProps = ({news, isDataLoaded}) => ({
+const mapStateToProps = ({news, isNewsLoaded}) => ({
   news,
-  isDataLoaded,
+  isNewsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadData() {
     dispatch(loadNews());
+  },
+  resetArticle() {
+    dispatch(ActionCreator.resetArticle());
   },
 });
 
