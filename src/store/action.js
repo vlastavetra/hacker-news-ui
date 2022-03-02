@@ -6,6 +6,7 @@ export const ActionType = {
   LOAD_SUB_COMMENTS: 'data/loadSubComments',
   RESET_NEWS: 'data/resetNews',
   RESET_ARTICLE: 'data/resetArticle',
+  RESET_COMMENTS: 'data/resetComments',
 };
 
 export const ActionCreator = {
@@ -31,10 +32,11 @@ export const ActionCreator = {
   }),
   resetNews: () => ({
     type: ActionType.RESET_NEWS,
-    payload: false,
   }),
   resetArticle: () => ({
     type: ActionType.RESET_ARTICLE,
-    payload: false,
+  }),
+  resetComments: () => ({
+    type: ActionType.RESET_COMMENTS,
   }),
 };

@@ -26,6 +26,8 @@ export const loadArticle = (id) => (dispatch, _getState, api) => {
 };
 
 export const loadComments = () => async (dispatch, _getState, api) => {
+  dispatch(ActionCreator.resetComments());
+
   const ids = _getState().article.kids;
   const data = await Promise.all(ids.map((id) => api.get(`${PATH.item}${id}${prettify}`)));
 

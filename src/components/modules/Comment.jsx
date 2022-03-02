@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {loadSubComments} from '../../store/api-actions';
@@ -11,11 +11,15 @@ function Comment(props) {
   const [shownComments, setShownComments] = useState(false);
   const filtredSubComments = subComments.filter((item) => item.parent === id);
 
+  useEffect(() => {
+    loadData(kids);
+  }, []);
+
   return (
     <li className={styles.root}>
       <CommentBody {...props}/>
       {kids && !shownComments &&
-        <button className={styles.button} onClick={() => {loadData(kids); setShownComments(true);}}>
+        <button className={styles.button} onClick={() => setShownComments(true)}>
           <Icon className={styles.userIcon} type='comment'/>
           {kids.length}
         </button>}

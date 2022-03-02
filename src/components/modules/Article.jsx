@@ -23,7 +23,7 @@ function Article(props) {
           className={styles.link}
           rel='noopener noreferrer'
           target='_blank'
-        >Source
+        >Read source
         </a>}
     </article>
   );

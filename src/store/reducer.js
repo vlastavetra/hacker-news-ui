@@ -43,6 +43,11 @@ const reducer = (state = initialState, action) => {
         subComments: action.payload,
         isSubCommentsLoad: true,
       };
+    case ActionType.RESET_NEWS:
+      return {
+        ...state,
+        isNewsLoaded: false,
+      };
     case ActionType.RESET_ARTICLE:
       return {
         ...state,
@@ -53,10 +58,12 @@ const reducer = (state = initialState, action) => {
         comments: [],
         subComments: [],
       };
-    case ActionType.RESET_NEWS:
+    case ActionType.RESET_COMMENTS:
       return {
         ...state,
-        isNewsLoaded: false,
+        isCommentsLoad: false,
+        isSubCommentsLoad: false,
+        subComments: [],
       };
     default:
       return state;
